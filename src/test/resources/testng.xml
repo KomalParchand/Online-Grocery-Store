@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SlipKART Registration and Login Test Suite" verbose="1">
+    
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    
+    <!-- Test parameters -->
+    <parameter name="baseUrl" value="http://localhost:8080/Online/WebContent/"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="timeout" value="10"/>
+    
+    <!-- Smoke Test Suite - Critical functionality -->
+    <test name="Smoke Tests" preserve-order="true">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests">
+                <methods>
+                    <include name="testSuccessfulCustomerRegistration"/>
+                    <include name="testSuccessfulCustomerLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Registration Test Suite -->
+    <test name="Registration Tests" preserve-order="true">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests">
+                <methods>
+                    <include name="testSuccessfulCustomerRegistration"/>
+                    <include name="testRegistrationWithMissingRequiredFields"/>
+                    <include name="testSuccessfulStaffRegistration"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Login Test Suite -->
+    <test name="Login Tests" preserve-order="true">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests">
+                <methods>
+                    <include name="testSuccessfulCustomerLogin"/>
+                    <include name="testLoginWithInvalidUsername"/>
+                    <include name="testLoginWithInvalidPassword"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Security Test Suite -->
+    <test name="Security Tests">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests">
+                <methods>
+                    <include name="testSQLInjectionPrevention"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Session Management Test Suite -->
+    <test name="Session Management Tests" preserve-order="true">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests">
+                <methods>
+                    <include name="testLogoutFunctionality"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Full Regression Test Suite -->
+    <test name="Full Regression Tests" preserve-order="true">
+        <classes>
+            <class name="com.slipkart.tests.RegistrationLoginAutomationTests"/>
+        </classes>
+    </test>
+    
+</suite>
